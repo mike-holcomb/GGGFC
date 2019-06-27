@@ -1,0 +1,5 @@
+digraph blocksr_a {
+    maxpool2x2 [op_type="maxpool2x2",
+           input=yes,
+           output=yes];
+}

@@ -1,0 +1,9 @@
+digraph blocksr_b {
+    conv3x3_2 [op_type="conv3x3_2",
+           input=yes];
+    bn [op_type="conv3x3_2"];
+    relu [op_type="relu",
+           output=yes];
+
+    conv3x3_2 -> bn -> relu
+}

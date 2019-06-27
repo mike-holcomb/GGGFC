@@ -1,0 +1,5 @@
+digraph pool_b {
+    globalavgpool  [op_type="globalavgpool",
+            input=yes,
+            output=yes];
+}

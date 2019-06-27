@@ -1,0 +1,10 @@
+digraph body_b {
+    body [op_type="body",
+          shape = box,
+             input=yes ];
+    block [op_type="block",
+           shape=box, 
+           output=yes];
+
+    body -> block;
+}

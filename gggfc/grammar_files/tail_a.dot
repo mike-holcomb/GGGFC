@@ -1,0 +1,5 @@
+digraph tail_a {
+    input [op_type="input", 
+           input = yes,
+           output=yes]
+}

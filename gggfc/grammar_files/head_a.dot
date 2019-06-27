@@ -1,0 +1,11 @@
+digraph head_a {
+    pool  [op_type="pool",
+            shape=box,
+            input=yes];
+    flatten [op_type="flatten" ];
+    logits [op_type="logits"];
+    output [op_type="output", 
+           output=yes];
+
+    pool->flatten -> logits -> output;
+}

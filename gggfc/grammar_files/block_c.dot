@@ -1,0 +1,14 @@
+digraph block_c {
+    block1 [op_type="block",
+    label="block",
+          shape = box,
+             input=yes ];
+    block2 [op_type="block",
+    label="block",
+           shape=box];
+    add [op_type="add",
+           output=yes];
+
+    block1 -> block2 -> add;
+    block1 -> add;
+}

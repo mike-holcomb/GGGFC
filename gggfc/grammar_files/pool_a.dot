@@ -1,0 +1,5 @@
+digraph pool_a {
+    globalmaxpool  [op_type="globalmaxpool",
+            input=yes,
+            output=yes];
+}

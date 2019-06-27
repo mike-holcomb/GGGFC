@@ -1,0 +1,8 @@
+digraph body_d {
+    blocksr [op_type="blocksr",
+           shape=box,
+           input=yes, 
+           output=yes];
+
+    blocksr;
+}

@@ -1,0 +1,14 @@
+digraph head_b {
+    pool  [op_type="pool",
+            shape=box,
+            input=yes];
+    flatten [op_type="flatten"];
+    affine [op_type="affine"];
+    bn [op_type="batch_norm"];
+    relu [op_type="relu"];    
+    logits [op_type="logits"];
+    output [op_type="output"
+           ,output=yes];
+
+    pool-> flatten -> affine -> bn -> relu -> logits -> output;
+}

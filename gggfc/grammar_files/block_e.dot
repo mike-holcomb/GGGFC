@@ -1,0 +1,12 @@
+digraph block_e {
+    conv3x31 [op_type="conv3x3",
+              label="conv3x3",
+             input=yes ];
+    bn1 [op_type="batch_norm", label="bn"];
+    conv3x32 [op_type="conv3x3", label="conv3x3"];
+    bn2 [op_type="batch_norm", label="bn"];
+    relu [op_type="relu",
+             output=yes];
+
+    conv3x31 -> bn1 -> conv3x32 -> bn2 -> relu;
+}

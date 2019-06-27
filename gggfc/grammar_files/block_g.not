@@ -1,0 +1,18 @@
+digraph block_d {
+    block1 [op_type="block",
+          shape = box,
+          label = "block",
+             input=yes ];
+    block2 [op_type="block",
+              label="block",
+           shape=box];
+    block3 [op_type="block",
+              label="block",
+           shape=box];
+
+    concat [op_type="concat",
+           output=yes];
+
+    block1 -> block2 -> concat;
+    block1 -> block3 -> concat;
+}

@@ -1,0 +1,12 @@
+digraph body_a {
+    body [op_type="body",
+          shape = box,
+             input=yes ];
+    blocksr [op_type="blocksr",
+          shape=box];
+    block [op_type="block",
+           shape=box, 
+           output=yes];
+
+    body -> blocksr -> block;
+}

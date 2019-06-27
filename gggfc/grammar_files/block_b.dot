@@ -1,0 +1,9 @@
+digraph block_b {
+    conv3x3 [op_type="conv3x3",
+             input=yes ];
+    bn [op_type="batch_norm"];
+    relu [op_type="relu",
+             output=yes];
+
+    conv3x3 -> bn -> relu;
+}
