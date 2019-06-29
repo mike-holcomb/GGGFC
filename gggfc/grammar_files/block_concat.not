@@ -1,0 +1,8 @@
+digraph block_d {
+
+
+    concat [op_type="concat",
+           output=yes];
+
+    concat;
+}
