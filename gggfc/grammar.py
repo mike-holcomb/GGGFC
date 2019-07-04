@@ -8,8 +8,11 @@ class Grammar:
         self.productions = {}
         self.productions['root'] = []
 
-        self.terminal_only = {}
-        self.nonterminal = {}
+        # self.terminal_only = {}
+        # self.nonterminal = {}
+
+        self.growing = {}
+        self.finishing = {}
 
     def convert_to_graph(self, graphx, prefix):
         new_graph = Graph(prefix)
@@ -72,20 +75,37 @@ class Grammar:
         g, is_terminal = self.convert_to_graph(rh, prod_name)
         self.productions[lh] = lh_list + [ g ]
 
-        if is_terminal:
-            lh_list = self.terminal_only.get(lh,[])
-            self.terminal_only[lh] = lh_list + [ g ]
+        if is_terminal or len(g.nodes) < 2:
+            lh_list = self.finishing.get(lh,[])
+            self.finishing[lh] = lh_list + [ g ]
         else:
-            lh_list = self.nonterminal.get(lh,[])
-            self.nonterminal[lh] = lh_list + [ g ]
+            lh_list = self.growing.get(lh,[])
+            self.growing[lh] = lh_list + [ g ]
 
-    def get_productions(self,op_type):
-        return self.productions[op_type]
+
+    def get_productions(self,op_type, grow=False):
+        ret = None
+
+        try:
+            self.growing[op_type]
+            can_grow = True
+        except KeyError as error:
+            can_grow = False
+
+        if grow and can_grow:
+            ret = self.growing[op_type]
+        else:
+            try:
+                ret = self.finishing[op_type]
+            except KeyError as error:
+                ret = self.growing[op_type]
+
+        return ret
 
     def print_grammar(self):
         print("Num total: " + str(len(self.productions)))
-        print("Num terminals: " + str(len(self.terminal_only)))
-        print("Num nonterms: " + str(len(self.nonterminal)))
+        print("Num finishing: " + str(len(self.finishing)))
+        print("Num growing: " + str(len(self.growing)))
         for k, v in self.productions.items():
             print("Term: " + k)
             for rh in v:

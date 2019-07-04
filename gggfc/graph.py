@@ -108,6 +108,13 @@ class Node:
     def print_edges(self):
         for ins in self.inbound:
             print("\t\"%s\" -> \"%s\"" % (ins, self.name))
+            
+
+    def write_edges(self):
+        lines = []
+        for ins in self.inbound:
+            lines.append("\t\"%s\" -> \"%s\"" % (ins, self.name))
+        return lines
 
 
 class Graph:
@@ -259,6 +266,27 @@ class Graph:
         print("}")
         # print("Source: %s, sink: %s" % (self.source, self.sink))
 
+    def write_dot(self, fname="graph.dot"):
+        dot_lines = []
+        dot_lines.append("digraph %s {" % self.prefix)
+
+        sorted_nodes = self._sort_nodes()
+        for node_name in sorted_nodes:
+            dot_lines.append("\t\"%s\"" % node_name) 
+        dot_lines.append("")
+
+        for node_name in sorted_nodes:
+            node = self.nodes[node_name]
+            if (not node.is_input):
+                edge_lines = node.write_edges()
+                dot_lines.extend(edge_lines)
+        dot_lines.append("")    
+        dot_lines.append("}")
+
+        with open(fname,"w") as f:
+            f.write("\n".join(dot_lines))
+
+
     def copy_graph(self, new_prefix):
         new_graph_ = Graph(new_prefix)
         # new_graph.source = self.source
@@ -372,14 +400,15 @@ class Graph:
                 mod_code = code.replace("?",str(X))
                 code_line = "    %s = %s([%s, %s])" % ( output_var, mod_code, input_var1, input_var2 )
 
-            print(code_line)
+            # print(code_line)
             func_code.append(code_line)
 
         in_var, out_var = output_names[self.source], output_names[self.sink]
 
         func_code.append("    return Model(inputs=%s, outputs=%s)" % (in_var, out_var))
-        print("\n".join(func_code))
-
+        code_string = "\n".join(func_code)
+        print(code_string)
+        return function_name, code_string
 
         # locals()["myfunction"]()
 
