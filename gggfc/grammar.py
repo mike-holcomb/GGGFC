@@ -14,6 +14,9 @@ class Grammar:
         self.growing = {}
         self.finishing = {}
 
+        self.body_sr = []
+        self.body_nosr = []
+
     def convert_to_graph(self, graphx, prefix):
         new_graph = Graph(prefix)
         name_map = {}

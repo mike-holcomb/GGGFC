@@ -1,0 +1,12 @@
+digraph backbone_a {
+    body1 [op_type="body",
+          shape = box,
+             input=yes ];
+    blocksr1 [op_type="blocksr",
+          shape=box];
+    body2 [op_type="body",
+          shape = box,
+             output=yes ];
+
+    body1 -> blocksr1 -> body2;
+}

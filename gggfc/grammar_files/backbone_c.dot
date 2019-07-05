@@ -1,0 +1,20 @@
+digraph backbone_c {
+    body1 [op_type="body",
+          shape = box,
+             input=yes ];
+    blocksr1 [op_type="blocksr",
+          shape=box];
+    body2 [op_type="body",
+          shape = box ];
+    blocksr2 [op_type="blocksr",
+          shape=box];
+    body3 [op_type="body",
+          shape = box ];
+    blocksr3 [op_type="blocksr",
+          shape=box];
+    body4 [op_type="body",
+           shape=box, 
+           output=yes];
+
+    body1 -> blocksr1 -> body2 -> blocksr2 -> body3 -> blocksr3 -> body4;
+}

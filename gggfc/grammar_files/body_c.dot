@@ -1,8 +1,0 @@
-digraph body_c {
-    block [op_type="block",
-           shape=box, 
-           input=yes,
-           output=yes];
-
-    block;
-}

@@ -1,7 +1,7 @@
 digraph root_a {
     tail [op_type=tail, shape = box, input = yes]
-    body [op_type=body,  shape = box ]
+    backbone [op_type=backbone,  shape = box ]
     head [op_type=head,  shape = box, output = yes]
 
-    tail -> body -> head
+    tail -> backbone -> head
 }
