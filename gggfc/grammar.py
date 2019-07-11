@@ -88,22 +88,27 @@ class Grammar:
 
     def get_productions(self,op_type, grow=False):
         ret = None
+        real_grow = grow
 
         try:
             self.growing[op_type]
             can_grow = True
         except KeyError as error:
             can_grow = False
+            real_grow = False
 
         if grow and can_grow:
             ret = self.growing[op_type]
+            real_grow = True
         else:
             try:
                 ret = self.finishing[op_type]
+                real_grow = False
             except KeyError as error:
                 ret = self.growing[op_type]
+                real_grow = True
 
-        return ret
+        return ret, real_grow
 
     def print_grammar(self):
         print("Num total: " + str(len(self.productions)))

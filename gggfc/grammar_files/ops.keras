@@ -13,3 +13,5 @@ conv3x3s	1	2	Conv2D(?*num_channels, (3,3), (2,2), padding='same', use_bias=False
 globalmaxpool	1	1	GlobalMaxPooling2D()
 globalavgpool	1	1	GlobalAveragePooling2D()
 affine	1	1	Dense(1024, use_bias=False)
+concat	4	2	Concatenate()
+concat4	4	4	Concatenate()

@@ -126,6 +126,7 @@ class Graph:
         self.ids = {}
         self.nonterms = []
         self.curr = 0
+        self.func_name = "build_model_%s" % time.strftime("%Y%m%d_%H%M%S")
 
     def add_nonterm(self, node_name):
         self.nonterms.append(node_name)
@@ -348,9 +349,7 @@ class Graph:
 
 
     def _build_function_head(self):
-        function_name = "build_model_%s" % time.strftime("%Y%m%d_%H%M%S")
-
-        return ["def " + function_name +"(num_channels):"], function_name
+        return ["def " + self.func_name +"(num_channels):"], self.func_name
 
     def convert_to_keras_builder(self):
         layer_names_map = {}
@@ -394,11 +393,19 @@ class Graph:
                 input_var = output_names[input_list[0]]
                 mod_code = code.replace("?",str(X))
                 code_line = "    %s = %s(%s)" % ( output_var, mod_code, input_var )
-            elif num_inputs == 2:
+            # elif num_inputs == 2:
+            #     input_list = list(node_.inbound)
+            #     input_var1, input_var2 = output_names[input_list[0]], output_names[input_list[1]]
+            #     mod_code = code.replace("?",str(X))
+            #     code_line = "    %s = %s([%s, %s])" % ( output_var, mod_code, input_var1, input_var2 )
+
+            else:
                 input_list = list(node_.inbound)
-                input_var1, input_var2 = output_names[input_list[0]], output_names[input_list[1]]
                 mod_code = code.replace("?",str(X))
-                code_line = "    %s = %s([%s, %s])" % ( output_var, mod_code, input_var1, input_var2 )
+                code_line = "    %s = %s([" % ( output_var, mod_code)
+                input_vars = [ output_names[x] for x in input_list]
+                input_var_code = ", ".join(input_vars)
+                code_line = code_line + input_var_code + "])"
 
             # print(code_line)
             func_code.append(code_line)

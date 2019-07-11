@@ -1,0 +1,13 @@
+digraph body_d {
+    body [op_type = "body", shape=box, 
+           input=yes];
+
+    block [op_type="block",
+           shape=box];
+
+    concat [op_type="concat",
+           output=yes]
+
+    body -> block -> concat;
+    body -> concat;
+}
