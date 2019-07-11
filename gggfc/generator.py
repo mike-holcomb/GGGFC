@@ -1,3 +1,4 @@
+import os
 from grammar import Grammar
 from policy import Policy
 from graph import Graph
@@ -43,8 +44,9 @@ class GeneratorHistory:
         print(self.production_counts)
         print(self.sequence)
 
-    def write_history(self, fname):
-        with open('history/' + fname + '.csv', 'w') as f:
+    def write_history(self, save_dir, fname):
+        save_file = os.path.join(save_dir, fname + '.csv')
+        with open(save_file, 'w') as f:
             f.write('step, lh, rh, depth, grow\n')
             for i in range(self.step_count):
                 f.write('%d, %s, %s, %d, %d\n' % 
@@ -83,7 +85,7 @@ class Generator:
         ret_production = self._select_production(productions, production_name)
         return ret_production, ret_production.nonterms
 
-    def generate(self):
+    def generate(self, save_dir):
         self.history = GeneratorHistory()
         graph, nonterms = self.get_production('root')
         queue = PriorityQueue()
@@ -106,7 +108,7 @@ class Generator:
                 queue.put((depth+1, item))
 
         self.history.print_history()
-        self.history.write_history(graph.func_name)
+        self.history.write_history(save_dir, graph.func_name)
 
         return graph
 

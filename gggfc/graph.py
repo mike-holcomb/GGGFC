@@ -1,5 +1,6 @@
 import time
 import csv
+import os
 
 class OpsMap:
     def __init__(self, fname = 'grammar_files/ops.keras'):
@@ -267,7 +268,9 @@ class Graph:
         print("}")
         # print("Source: %s, sink: %s" % (self.source, self.sink))
 
-    def write_dot(self, fname="graph.dot"):
+    def write_dot(self, save_dir, fname="graph"):
+        save_file = os.path.join(save_dir, fname + '.dot')
+
         dot_lines = []
         dot_lines.append("digraph %s {" % self.prefix)
 
@@ -284,7 +287,7 @@ class Graph:
         dot_lines.append("")    
         dot_lines.append("}")
 
-        with open(fname,"w") as f:
+        with open(save_file,"w") as f:
             f.write("\n".join(dot_lines))
 
 
@@ -351,7 +354,7 @@ class Graph:
     def _build_function_head(self):
         return ["def " + self.func_name +"(num_channels):"], self.func_name
 
-    def convert_to_keras_builder(self):
+    def convert_to_keras_builder(self, ops_map_file):
         layer_names_map = {}
         layer_nums = {}
 
@@ -372,7 +375,7 @@ class Graph:
         # BEGIN CODE GENERATION
         func_code, function_name = self._build_function_head()
         
-        opsmap = OpsMap()
+        opsmap = OpsMap(fname=ops_map_file)
         # opsmap.print_opsmap()
 
         X = 1 # Channel number multiplier
