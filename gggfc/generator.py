@@ -1,9 +1,11 @@
 import os
-from grammar import Grammar
-from policy import Policy
-from graph import Graph
 from random import choice, random
 from queue import PriorityQueue
+
+from .grammar import Grammar
+from .policy import Policy
+from .graph import Graph
+
 
 class GeneratorHistory:
     def __init__(self):
@@ -107,7 +109,7 @@ class Generator:
             for item in new_nonterms:
                 queue.put((depth+1, item))
 
-        self.history.print_history()
+        #self.history.print_history()
         self.history.write_history(save_dir, graph.func_name)
 
         return graph

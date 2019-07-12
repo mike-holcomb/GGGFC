@@ -1,6 +1,6 @@
 import glob, os
 import networkx as nx
-from graph import Graph, Node
+from .graph import Graph, Node
 
 
 class Grammar:

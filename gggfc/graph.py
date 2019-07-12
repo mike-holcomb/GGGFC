@@ -417,7 +417,7 @@ class Graph:
 
         func_code.append("    return Model(inputs=%s, outputs=%s)" % (in_var, out_var))
         code_string = "\n".join(func_code)
-        print(code_string)
+        #print(code_string)
         return function_name, code_string
 
         # locals()["myfunction"]()
