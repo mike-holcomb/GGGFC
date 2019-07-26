@@ -1,0 +1,17 @@
+digraph root_a {
+	"root_a/tail_0"
+	"root_a_0/backbone_b/body_0"
+	"root_a_0/backbone_b/blocksr_0"
+	"root_a_0/backbone_b/body_1"
+	"root_a_0/backbone_b/blocksr_1"
+	"root_a_0/backbone_b/body_2"
+	"root_a/head_0"
+
+	"root_a/tail_0" -> "root_a_0/backbone_b/body_0"
+	"root_a_0/backbone_b/body_0" -> "root_a_0/backbone_b/blocksr_0"
+	"root_a_0/backbone_b/blocksr_0" -> "root_a_0/backbone_b/body_1"
+	"root_a_0/backbone_b/body_1" -> "root_a_0/backbone_b/blocksr_1"
+	"root_a_0/backbone_b/blocksr_1" -> "root_a_0/backbone_b/body_2"
+	"root_a_0/backbone_b/body_2" -> "root_a/head_0"
+
+}

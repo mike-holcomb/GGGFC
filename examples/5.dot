@@ -1,0 +1,23 @@
+digraph root_a {
+	"root_a_2/tail_a/input_0"
+	"root_a_0/backbone_b/body_0"
+	"root_a_0/backbone_b_3/blocksr_a/maxpool2x2_0"
+	"root_a_0/backbone_b/body_1"
+	"root_a_0/backbone_b/blocksr_1"
+	"root_a_0/backbone_b/body_2"
+	"root_a_1/head_a/pool_0"
+	"root_a_1/head_a/flatten_0"
+	"root_a_1/head_a/logits_0"
+	"root_a_1/head_a/output_0"
+
+	"root_a_2/tail_a/input_0" -> "root_a_0/backbone_b/body_0"
+	"root_a_0/backbone_b/body_0" -> "root_a_0/backbone_b_3/blocksr_a/maxpool2x2_0"
+	"root_a_0/backbone_b_3/blocksr_a/maxpool2x2_0" -> "root_a_0/backbone_b/body_1"
+	"root_a_0/backbone_b/body_1" -> "root_a_0/backbone_b/blocksr_1"
+	"root_a_0/backbone_b/blocksr_1" -> "root_a_0/backbone_b/body_2"
+	"root_a_0/backbone_b/body_2" -> "root_a_1/head_a/pool_0"
+	"root_a_1/head_a/pool_0" -> "root_a_1/head_a/flatten_0"
+	"root_a_1/head_a/flatten_0" -> "root_a_1/head_a/logits_0"
+	"root_a_1/head_a/logits_0" -> "root_a_1/head_a/output_0"
+
+}

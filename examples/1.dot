@@ -1,0 +1,9 @@
+digraph root_a {
+	"root_a/tail_0"
+	"root_a/backbone_0"
+	"root_a/head_0"
+
+	"root_a/tail_0" -> "root_a/backbone_0"
+	"root_a/backbone_0" -> "root_a/head_0"
+
+}
